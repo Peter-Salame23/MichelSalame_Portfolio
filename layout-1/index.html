@@ -264,13 +264,14 @@
 
     /* subtle gradient overlay at bottom */
     .portal-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(12,22,35,0.85) 0%, transparent 60%);
-      opacity: 0.7;
+      position: absolute; inset: 0; z-index: 1;
+      background: linear-gradient(to top, rgba(12,22,35,0.92) 0%, rgba(12,22,35,0.4) 60%, rgba(12,22,35,0.2) 100%);
+      opacity: 1;
       transition: opacity 0.4s;
     }
 
     .portal-content { position: relative; z-index: 2; }
+    .portal-number { z-index: 2; }
 
     .portal-icon-line {
       width: 32px; height: 1px;
@@ -330,20 +331,18 @@
       fill: none;
     }
 
-    /* photo inside portal */
-    .portal-photo {
+    /* full-card background image */
+    .portal-bg-img {
       position: absolute;
-      top: 2rem; right: 2rem;
-      width: 120px; height: 150px;
-      border: 1px solid rgba(184,150,80,0.15);
-      overflow: hidden;
-      z-index: 1;
-    }
-    .portal-photo img {
+      inset: 0;
       width: 100%; height: 100%;
       object-fit: cover; object-position: center;
       display: block;
+      z-index: 0;
+      opacity: 0.35;
+      transition: opacity 0.5s;
     }
+    .portal:hover .portal-bg-img { opacity: 0.55; }
 
     /* ─── BOTTOM STRIP ─── */
     .bottom-strip {
@@ -458,9 +457,9 @@
 
       <!-- 1 — Business -->
       <a href="business.html" class="portal portal-business">
+        <img class="portal-bg-img" src="/images/bus-main.jpg" alt="Business">
         <div class="portal-number">I</div>
         <div class="portal-overlay"></div>
-        <div class="portal-photo"><img src="/images/bus-main.jpg" alt="Business"></div>
         <div class="portal-content">
           <div class="portal-icon-line"></div>
           <p class="portal-category">Chapter I</p>
@@ -475,9 +474,9 @@
 
       <!-- 2 — Politics -->
       <a href="politics.html" class="portal portal-politics">
+        <img class="portal-bg-img" src="/images/pol-main.jpg" alt="Politics">
         <div class="portal-number">II</div>
         <div class="portal-overlay"></div>
-        <div class="portal-photo"><img src="/images/pol-main.jpg" alt="Politics"></div>
         <div class="portal-content">
           <div class="portal-icon-line"></div>
           <p class="portal-category">Chapter II</p>
@@ -492,9 +491,9 @@
 
       <!-- 3 — Social -->
       <a href="social.html" class="portal portal-social">
+        <img class="portal-bg-img" src="/images/socialwork.jpg" alt="Social Works">
         <div class="portal-number">III</div>
         <div class="portal-overlay"></div>
-        <div class="portal-photo"><img src="/images/socialwork.jpg" alt="Social Works"></div>
         <div class="portal-content">
           <div class="portal-icon-line"></div>
           <p class="portal-category">Chapter III</p>
