@@ -207,7 +207,7 @@
     .portals-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 2px;
+      gap: 16px;
     }
 
     /* Each portal panel */
@@ -226,7 +226,6 @@
     }
     .portal:hover { transform: translateY(-6px); }
     .portal:hover .portal-overlay { opacity: 0.55; }
-    .portal:hover .portal-cta { opacity: 1; transform: translateY(0); }
     .portal:hover .portal-number { opacity: 0.06; }
     .portal:hover .portal-icon-line { width: 60px; }
 
@@ -321,10 +320,11 @@
       font-weight: 500;
       letter-spacing: 3px;
       text-transform: uppercase;
-      opacity: 0;
-      transform: translateY(8px);
+      opacity: 0.55;
+      transform: translateY(0);
       transition: opacity 0.4s, transform 0.4s;
     }
+    .portal:hover .portal-cta { opacity: 1; }
     .portal-cta svg {
       width: 20px; height: 20px;
       stroke: var(--gold-lt);
@@ -466,7 +466,7 @@
           <h2 class="portal-title">Businesses &amp;<br/><em>Investments</em></h2>
           <p class="portal-desc">From founding enterprises that reshaped whole industries to seeding ventures that created thousands of livelihoods — a record built on vision and resolve.</p>
           <span class="portal-cta">
-            Enter
+            Click to Explore
             <svg viewBox="0 0 24 24" stroke-width="1.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12,5 19,12 12,19"/></svg>
           </span>
         </div>
@@ -483,7 +483,7 @@
           <h2 class="portal-title">Political<br/><em>Journey</em></h2>
           <p class="portal-desc">Three decades navigating the corridors of power — championing reform, defending justice, and forging the policies that shaped a generation.</p>
           <span class="portal-cta">
-            Enter
+            Click to Explore
             <svg viewBox="0 0 24 24" stroke-width="1.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12,5 19,12 12,19"/></svg>
           </span>
         </div>
@@ -500,7 +500,7 @@
           <h2 class="portal-title">Social<br/><em>Works</em></h2>
           <p class="portal-desc">Behind the public figure is a philanthropist — funding education, uplifting communities, and building institutions that outlast any office held.</p>
           <span class="portal-cta">
-            Enter
+            Click to Explore
             <svg viewBox="0 0 24 24" stroke-width="1.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12,5 19,12 12,19"/></svg>
           </span>
         </div>
