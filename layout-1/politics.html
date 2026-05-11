@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Michel Salameh — Political Journey</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:       #0c1623;
+      --ink-mid:   #101620;
+      --ink-card:  #0f1520;
+      --gold:      #b89650;
+      --gold-lt:   #d4b878;
+      --gold-dim:  rgba(184,150,80,0.14);
+      --cream:     #f7f3ec;
+      --muted:     rgba(247,243,236,0.5);
+      --border:    rgba(184,150,80,0.12);
+      --sans:      'Jost', sans-serif;
+      --serif:     'Cormorant Garamond', serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--sans); background: var(--ink); color: var(--cream); overflow-x: hidden; }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 200;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%; height: 68px;
+      background: rgba(12,22,35,0.94); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-left { display: flex; align-items: center; gap: 1.5rem; }
+    .nav-back {
+      display: flex; align-items: center; gap: 0.6rem;
+      color: rgba(247,243,236,0.35); text-decoration: none;
+      font-size: 0.68rem; letter-spacing: 2px; text-transform: uppercase;
+      transition: color 0.3s;
+    }
+    .nav-back svg { width: 16px; height: 16px; stroke: currentColor; fill: none; }
+    .nav-back:hover { color: var(--gold-lt); }
+    .nav-divider { width: 1px; height: 20px; background: var(--border); }
+    .nav-logo { font-family: var(--serif); font-size: 1.15rem; font-weight: 500; color: var(--gold-lt); letter-spacing: 1px; }
+    .nav-chapter { font-size: 0.62rem; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); background: var(--gold-dim); padding: 0.3rem 0.9rem; }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 80vh;
+      display: flex; align-items: flex-end;
+      padding: 120px 7% 80px;
+      position: relative; overflow: hidden;
+      background: linear-gradient(160deg, #0d1520 0%, #0c1320 100%);
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 50% at 30% 60%, rgba(184,150,80,0.04), transparent);
+      pointer-events: none;
+    }
+    .hero-bg-roman {
+      position: absolute; right: -3%; bottom: -10%;
+      font-family: var(--serif); font-size: clamp(200px, 30vw, 400px);
+      font-weight: 700; color: rgba(184,150,80,0.025); line-height: 1;
+      pointer-events: none; user-select: none;
+    }
+    .hero-content { position: relative; z-index: 2; max-width: 780px; }
+    .hero-eyebrow {
+      display: flex; align-items: center; gap: 1rem;
+      color: var(--gold); font-size: 0.68rem; font-weight: 500;
+      letter-spacing: 5px; text-transform: uppercase; margin-bottom: 1.5rem;
+    }
+    .hero-eyebrow::before { content: ''; width: 32px; height: 1px; background: var(--gold); }
+    .hero-title {
+      font-family: var(--serif);
+      font-size: clamp(3rem, 7vw, 7rem);
+      font-weight: 300; line-height: 0.95; color: var(--cream); margin-bottom: 0.15em;
+    }
+    .hero-title em { font-style: italic; color: var(--gold-lt); }
+    .hero-rule { width: 60px; height: 1px; background: var(--gold); margin: 2rem 0; }
+    .hero-subtitle {
+      font-family: var(--serif);
+      font-size: clamp(1rem, 1.8vw, 1.25rem);
+      font-weight: 300; font-style: italic; color: var(--muted); line-height: 1.75; max-width: 540px;
+    }
+
+    /* ─── INTRO ─── */
+    .intro {
+      padding: 90px 7%;
+      display: grid; grid-template-columns: 1fr 2fr; gap: 6rem; align-items: start;
+      border-bottom: 1px solid var(--border);
+    }
+    .intro-label { font-size: 0.65rem; letter-spacing: 5px; text-transform: uppercase; color: var(--gold); padding-top: 0.4rem; }
+    .intro-text p { font-size: 1.05rem; line-height: 1.95; color: var(--muted); margin-bottom: 1.4rem; font-weight: 300; }
+    .intro-text p:first-child { font-family: var(--serif); font-size: 1.35rem; font-weight: 300; color: rgba(247,243,236,0.82); line-height: 1.7; }
+
+    /* ─── TIMELINE ─── */
+    .timeline-section { padding: 90px 7%; }
+    .sec-eyebrow {
+      font-size: 0.65rem; letter-spacing: 5px; text-transform: uppercase; color: var(--gold);
+      margin-bottom: 0.8rem; display: flex; align-items: center; gap: 0.8rem;
+    }
+    .sec-eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--gold); }
+    .sec-title { font-family: var(--serif); font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 300; color: var(--cream); line-height: 1.1; }
+    .sec-title em { font-style: italic; color: var(--gold-lt); }
+
+    .timeline {
+      margin-top: 4rem;
+      position: relative;
+      padding-left: 3.5rem;
+    }
+    .timeline::before {
+      content: ''; position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 1px; background: linear-gradient(to bottom, var(--gold), rgba(184,150,80,0.1));
+    }
+    .timeline-item {
+      position: relative;
+      padding-bottom: 4rem;
+      display: grid; grid-template-columns: 110px 1fr;
+      gap: 3rem; align-items: start;
+    }
+    .timeline-item:last-child { padding-bottom: 0; }
+    .timeline-dot {
+      position: absolute;
+      left: -3.5rem; top: 5px;
+      transform: translateX(-50%);
+      width: 9px; height: 9px; border-radius: 50%;
+      background: var(--gold);
+      box-shadow: 0 0 0 4px rgba(184,150,80,0.12);
+    }
+    .timeline-year {
+      font-family: var(--serif);
+      font-size: 1rem; font-weight: 300;
+      color: var(--gold); padding-top: 0.3rem; text-align: right;
+    }
+    .timeline-body {}
+    .timeline-tag {
+      display: inline-block;
+      border: 1px solid var(--border); color: var(--gold-lt);
+      padding: 0.2rem 0.7rem; font-size: 0.6rem;
+      letter-spacing: 2.5px; text-transform: uppercase; margin-bottom: 0.8rem;
+    }
+    .timeline-title {
+      font-family: var(--serif);
+      font-size: 1.5rem; font-weight: 500; color: var(--cream); line-height: 1.2; margin-bottom: 0.8rem;
+    }
+    .timeline-desc { font-size: 0.88rem; line-height: 1.9; color: var(--muted); font-weight: 300; }
+    /* Timeline slideshow */
+    .timeline-slideshow {
+      position: relative;
+      width: 100%; max-width: 420px; height: 240px;
+      overflow: hidden; margin-top: 1.5rem;
+      background: rgba(184,150,80,0.05);
+      border: 1px solid var(--border);
+      cursor: zoom-in;
+    }
+    .ts-slide {
+      position: absolute; inset: 0;
+      opacity: 0; transition: opacity 0.7s ease;
+    }
+    .ts-slide.active { opacity: 1; }
+    .ts-slide img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center;
+      display: block;
+    }
+    .ts-btn {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      z-index: 10;
+      background: rgba(12,22,35,0.7); border: 1px solid rgba(184,150,80,0.25);
+      color: var(--gold-lt); width: 30px; height: 30px;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: background 0.25s, opacity 0.25s; opacity: 0;
+    }
+    .timeline-slideshow:hover .ts-btn { opacity: 1; }
+    .ts-btn:hover { background: rgba(184,150,80,0.2); }
+    .ts-btn svg { width: 13px; height: 13px; stroke: currentColor; fill: none; stroke-width: 2; }
+    .ts-btn.prev { left: 8px; }
+    .ts-btn.next { right: 8px; }
+    .ts-dots {
+      position: absolute; bottom: 8px; left: 50%; transform: translateX(-50%);
+      display: flex; gap: 5px; z-index: 10;
+    }
+    .ts-dot {
+      width: 5px; height: 5px; border-radius: 50%;
+      background: rgba(184,150,80,0.3); cursor: pointer;
+      transition: background 0.3s, transform 0.3s;
+    }
+    .ts-dot.active { background: var(--gold); transform: scale(1.3); }
+
+    /* ─── SCROLL REVEAL ─── */
+    .reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+
+    /* ─── POSITIONS ─── */
+    .positions { padding: 90px 7%; background: var(--ink-mid); border-top: 1px solid var(--border); }
+    .positions-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 2px; margin-top: 3rem;
+    }
+    .pos-card {
+      background: var(--ink-card); padding: 2.5rem 2rem;
+      border-top: 1px solid var(--border); position: relative;
+      transition: background 0.3s;
+    }
+    .pos-card::before {
+      content: ''; position: absolute; top: 0; left: 0;
+      width: 0; height: 2px; background: var(--gold); transition: width 0.4s;
+    }
+    .pos-card:hover { background: rgba(15,21,32,0.95); }
+    .pos-card:hover::before { width: 100%; }
+    .pos-period { font-size: 0.62rem; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 0.8rem; }
+    .pos-title { font-family: var(--serif); font-size: 1.2rem; font-weight: 500; color: var(--cream); margin-bottom: 0.5rem; line-height: 1.2; }
+    .pos-body { font-size: 0.83rem; line-height: 1.8; color: var(--muted); font-weight: 300; }
+
+    /* ─── LEGISLATION ─── */
+    .legislation { padding: 90px 7%; }
+    .leg-table { width: 100%; border-collapse: collapse; margin-top: 3rem; }
+    .leg-table thead tr { border-bottom: 1px solid var(--border); }
+    .leg-table th { text-align: left; font-size: 0.62rem; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); font-weight: 400; padding: 0 1rem 1.2rem 0; }
+    .leg-table tbody tr { border-bottom: 1px solid rgba(184,150,80,0.07); transition: background 0.3s; }
+    .leg-table tbody tr:hover { background: rgba(184,150,80,0.03); }
+    .leg-table td { padding: 1.5rem 1rem 1.5rem 0; font-size: 0.88rem; color: var(--muted); font-weight: 300; vertical-align: top; }
+    .td-bill { font-family: var(--serif); font-size: 1rem; color: var(--cream); font-weight: 400; }
+    .td-impact { font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-top: 0.3rem; }
+    .td-badge {
+      display: inline-block; border: 1px solid; padding: 0.2rem 0.7rem;
+      font-size: 0.6rem; letter-spacing: 2px; text-transform: uppercase;
+    }
+    .td-badge.passed { border-color: rgba(122,170,100,0.4); color: #8fc87a; }
+    .td-badge.led    { border-color: rgba(184,150,80,0.35); color: var(--gold-lt); }
+
+    /* ─── RECOGNITION ─── */
+    .recognition { padding: 90px 7%; background: var(--ink-mid); border-top: 1px solid var(--border); }
+    .rec-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; margin-top: 3rem; }
+    .rec-item {
+      background: var(--ink-card); padding: 2.5rem 1.8rem;
+      border-top: 1px solid var(--border); text-align: center;
+    }
+    .rec-year { font-family: var(--serif); font-size: 2rem; color: var(--gold); font-weight: 300; margin-bottom: 0.8rem; }
+    .rec-award { font-family: var(--serif); font-size: 1rem; color: var(--cream); line-height: 1.3; margin-bottom: 0.5rem; }
+    .rec-by { font-size: 0.72rem; color: var(--muted); font-weight: 300; }
+
+    /* ─── EVENTS ─── */
+    .events { padding: 90px 7%; }
+    .events-list { margin-top: 3rem; display: flex; flex-direction: column; }
+    .event-row {
+      display: grid; grid-template-columns: 90px 1fr;
+      gap: 2.5rem; align-items: start;
+      padding: 2rem 0; border-bottom: 1px solid var(--border);
+    }
+    .event-date-block { text-align: center; }
+    .event-day { font-family: var(--serif); font-size: 2.8rem; font-weight: 300; color: var(--gold-lt); line-height: 1; }
+    .event-month { font-size: 0.6rem; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); }
+    .event-tag { display: inline-block; border: 1px solid var(--border); color: var(--gold); padding: 0.2rem 0.7rem; font-size: 0.6rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.6rem; }
+    .event-title { font-family: var(--serif); font-size: 1.3rem; font-weight: 500; color: var(--cream); margin-bottom: 0.5rem; }
+    .event-desc { font-size: 0.85rem; line-height: 1.8; color: var(--muted); font-weight: 300; }
+    .event-loc { font-size: 0.78rem; color: var(--gold); margin-top: 0.5rem; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--ink); border-top: 1px solid var(--border);
+      padding: 2.5rem 5%;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .footer-logo { font-family: var(--serif); font-size: 1.1rem; color: rgba(212,184,120,0.5); }
+    .footer-nav { display: flex; gap: 2rem; }
+    .footer-nav a { font-size: 0.68rem; letter-spacing: 2px; text-transform: uppercase; color: rgba(247,243,236,0.2); text-decoration: none; transition: color 0.3s; }
+    .footer-nav a:hover { color: var(--gold); }
+    .footer-copy { font-size: 0.7rem; color: rgba(247,243,236,0.18); }
+
+    @media (max-width: 900px) {
+      .intro, .timeline-item { grid-template-columns: 1fr; gap: 1.5rem; }
+      .positions-grid, .rec-grid { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 1.5rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-left">
+      <a href="index.html" class="nav-back">
+        <svg viewBox="0 0 24 24" stroke-width="1.5"><polyline points="15,18 9,12 15,6"/></svg>
+        Back
+      </a>
+      <div class="nav-divider"></div>
+      <div class="nav-logo">Michel Salameh</div>
+    </div>
+    <span class="nav-chapter">Chapter II &nbsp;·&nbsp; Political Journey</span>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg-roman">II</div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Chapter II</p>
+      <h1 class="hero-title">Political<br/><em>Journey</em></h1>
+      <div class="hero-rule"></div>
+      <p class="hero-subtitle">"I entered politics not to be remembered, but to leave behind something worth remembering."</p>
+    </div>
+  </section>
+
+  <!-- INTRO -->
+  <div class="intro">
+    <p class="intro-label reveal">Overview</p>
+    <div class="intro-text reveal reveal-delay-1">
+      <p>Michel Salameh's public career began in the newsrooms of Beirut and the corridors of Lebanon's government ministries — built on three decades of service in journalism, political counsel, and elected leadership. His path from political advisor to President of the Municipality of Faraya is marked by a consistent philosophy: that public life is a trust, and that trust is honoured through action, not words.</p>
+      <p>From his years advising Lebanon's Foreign Minister to hosting world-record diplomatic events and receiving some of the highest honours the Church and the Italian state can bestow, Michel's political journey has always been rooted in the communities he serves and the values he carries.</p>
+    </div>
+  </div>
+
+  <!-- TIMELINE -->
+  <section class="timeline-section">
+    <div class="sec-eyebrow reveal">Chronology</div>
+    <h2 class="sec-title reveal reveal-delay-1">Political <em>Timeline</em></h2>
+    <div class="timeline">
+
+      <!-- 1992–1995: Journalist -->
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-year">1992 – 1995</div>
+        <div class="timeline-body">
+          <span class="timeline-tag">Media</span>
+          <h3 class="timeline-title">Journalist — ICN &amp; نداء الوطن <span style="font-family:var(--sans);font-size:0.85rem;font-weight:300;color:var(--muted);">(Nida2 Al-Watan)</span></h3>
+          <p class="timeline-desc">Michel began his public career as a journalist, contributing to two of Lebanon's prominent media outlets — ICN and Nida2 Al-Watan (نداء الوطن). His work gave him a front-row seat to Lebanon's political landscape during one of its most turbulent periods, sharpening the analytical instincts and public voice that would define his later career in government and law.</p>
+          <div class="timeline-slideshow">
+            <div class="ts-slide active"><img src="../images/pol-journalist-1.jpg" alt="Journalism years"></div>
+            <div class="ts-slide"><img src="../images/pol-journalist-2.jpg" alt="Journalism years"></div>
+            <button class="ts-btn prev"><svg viewBox="0 0 24 24"><polyline points="15,18 9,12 15,6"/></svg></button>
+            <button class="ts-btn next"><svg viewBox="0 0 24 24"><polyline points="9,18 15,12 9,6"/></svg></button>
+            <div class="ts-dots"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 1992–1995: Political Advisor, Foreign Minister -->
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-year">1992 – 1995</div>
+        <div class="timeline-body">
+          <span class="timeline-tag">Government Advisory</span>
+          <h3 class="timeline-title">Political Advisor to the Foreign Minister of Lebanon</h3>
+          <p class="timeline-desc">Concurrently with his journalism career, Michel served as a political advisor to Lebanon's Foreign Minister — a role that placed him at the centre of the country's international diplomacy during a defining chapter of its post-war history. His counsel spanned bilateral relations, regional negotiations, and the strategic positioning of Lebanon's foreign policy interests.</p>
+          <div class="timeline-slideshow">
+            <div class="ts-slide active"><img src="../images/pol-foreign-1.jpg" alt="Foreign Ministry advisor"></div>
+            <div class="ts-slide"><img src="../images/pol-foreign-2.jpg" alt="Foreign Ministry advisor"></div>
+            <button class="ts-btn prev"><svg viewBox="0 0 24 24"><polyline points="15,18 9,12 15,6"/></svg></button>
+            <button class="ts-btn next"><svg viewBox="0 0 24 24"><polyline points="9,18 15,12 9,6"/></svg></button>
+            <div class="ts-dots"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 1995–1997: Ministry of Social Affairs -->
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-year">1995 – 1997</div>
+        <div class="timeline-body">
+          <span class="timeline-tag">Government Advisory</span>
+          <h3 class="timeline-title">Advisor — Ministry of Social Affairs &amp; Independent Housing Fund</h3>
+          <p class="timeline-desc">Michel served as advisor to the Ministry of Social Affairs and the Independent Housing Fund (وزارة الشؤون الاجتماعية والصندوق المستقل للإسكان), working on policy frameworks that addressed housing access and social welfare for Lebanon's most vulnerable citizens. His work in this role informed the community-first philosophy that has defined his subsequent public service.</p>
+          <div class="timeline-slideshow">
+            <div class="ts-slide active"><img src="../images/pol-social.jpg" alt="Ministry of Social Affairs"></div>
+            <div class="ts-slide"><img src="../images/pol-social-2.jpg" alt="Ministry of Social Affairs"></div>
+            <button class="ts-btn prev"><svg viewBox="0 0 24 24"><polyline points="15,18 9,12 15,6"/></svg></button>
+            <button class="ts-btn next"><svg viewBox="0 0 24 24"><polyline points="9,18 15,12 9,6"/></svg></button>
+            <div class="ts-dots"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2016: President of Municipality of Faraya -->
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-year">2016 – 2025</div>
+        <div class="timeline-body">
+          <span class="timeline-tag">Elected Office</span>
+          <h3 class="timeline-title">Elected President of the Municipality of Faraya</h3>
+          <p class="timeline-desc">In 2016, Michel was elected President of the Municipality of Faraya — a mandate of direct public trust that he has carried with the same rigour he brought to national advisory roles. Under his presidency, Faraya has seen landmark investments in public infrastructure, civic buildings, machinery, and community services. His leadership transformed the municipality into a model of efficient local governance in the Lebanese mountain region.</p>
+          <div class="timeline-slideshow">
+            <div class="ts-slide active"><img src="../images/pol-faraya-1.jpg" alt="Municipality of Faraya"></div>
+            <div class="ts-slide"><img src="../images/pol-faraya-2.jpg" alt="Municipality of Faraya"></div>
+            <div class="ts-slide"><img src="../images/pol-faraya-3.jpg" alt="Municipality of Faraya"></div>
+            <button class="ts-btn prev"><svg viewBox="0 0 24 24"><polyline points="15,18 9,12 15,6"/></svg></button>
+            <button class="ts-btn next"><svg viewBox="0 0 24 24"><polyline points="9,18 15,12 9,6"/></svg></button>
+            <div class="ts-dots"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2017: Recognition in Italy -->
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-year">2017</div>
+        <div class="timeline-body">
+          <span class="timeline-tag">International Recognition</span>
+          <h3 class="timeline-title">Official Recognition in Italy for Municipal Leadership</h3>
+          <p class="timeline-desc">Michel's work as President of the Municipality of Faraya earned him formal recognition from Italian institutions, awarded in acknowledgement of his contributions to municipal governance, community events, and the cultural exchanges he championed between Lebanon and Italy. The recognition placed Faraya on an international stage and affirmed Michel's standing as a model of enlightened local leadership.</p>
+          <div class="timeline-slideshow">
+            <div class="ts-slide active"><img src="../images/pol-italy-1.jpg" alt="Italy recognition"></div>
+            <div class="ts-slide"><img src="../images/pol-italy-2.jpg" alt="Italy recognition"></div>
+            <button class="ts-btn prev"><svg viewBox="0 0 24 24"><polyline points="15,18 9,12 15,6"/></svg></button>
+            <button class="ts-btn next"><svg viewBox="0 0 24 24"><polyline points="9,18 15,12 9,6"/></svg></button>
+            <div class="ts-dots"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2018: Patriarch Medal of Honor -->
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-year">2018</div>
+        <div class="timeline-body">
+          <span class="timeline-tag">Honour</span>
+          <h3 class="timeline-title">Patriarch Medal of Honor — Third Recipient in History</h3>
+          <p class="timeline-desc">In 2018, Michel Salameh was awarded the Patriarch Medal of Honor — one of the most distinguished honours within the Lebanese Maronite tradition. He stands as only the third person in history to have received this medal, a testament to the depth of his service to the community, the Church, and the Lebanese people. The award recognised a lifetime of contribution to faith, civic life, and national leadership.</p>
+          <div class="timeline-slideshow">
+            <div class="ts-slide active"><img src="../images/pol-patriarch-1.jpg" alt="Patriarch Medal of Honor"></div>
+            <div class="ts-slide"><img src="../images/pol-patriarch-2.jpg" alt="Patriarch Medal of Honor"></div>
+            <button class="ts-btn prev"><svg viewBox="0 0 24 24"><polyline points="15,18 9,12 15,6"/></svg></button>
+            <button class="ts-btn next"><svg viewBox="0 0 24 24"><polyline points="9,18 15,12 9,6"/></svg></button>
+            <div class="ts-dots"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2018: Ambassador Event -->
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-year">2018</div>
+        <div class="timeline-body">
+          <span class="timeline-tag">Diplomacy</span>
+          <h3 class="timeline-title">Host of Lebanon's Largest-Ever Ambassador Gathering</h3>
+          <p class="timeline-desc">Michel organised and hosted a landmark diplomatic event that brought together the highest number of 28 ambassadors ever gathered at a single event in Lebanon's history — including the Vatican Ambassador. The gathering was a remarkable affirmation of his standing in the international diplomatic community and his ability to convene figures of global influence around shared values of dialogue, partnership, and peace.</p>
+          <div class="timeline-slideshow">
+            <div class="ts-slide active"><img src="../images/pol-ambassadors-1.jpg" alt="Ambassador event"></div>
+            <div class="ts-slide"><img src="../images/pol-ambassadors-2.jpg" alt="Ambassador event"></div>
+            <div class="ts-slide"><img src="../images/pol-ambassadors-3.jpg" alt="Ambassador event"></div>
+            <button class="ts-btn prev"><svg viewBox="0 0 24 24"><polyline points="15,18 9,12 15,6"/></svg></button>
+            <button class="ts-btn next"><svg viewBox="0 0 24 24"><polyline points="9,18 15,12 9,6"/></svg></button>
+            <div class="ts-dots"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2019: Pope Francis -->
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-year">2019</div>
+        <div class="timeline-body">
+          <span class="timeline-tag">Papal Audience</span>
+          <h3 class="timeline-title">Met &amp; Received Blessing from Pope Francis</h3>
+          <p class="timeline-desc">In 2019, Michel Salameh was received by Pope Francis and received his personal blessing — a profound moment that reflected both his standing in the international Catholic community and the depth of his faith. The audience with the Holy Father stood as one of the most personally meaningful milestones of Michel's public life, and a recognition of his commitment to values of service, community, and peace.</p>
+          <div class="timeline-slideshow">
+            <div class="ts-slide active"><img src="../images/pol-pope-1.jpg" alt="Pope Francis audience"></div>
+            <div class="ts-slide"><img src="../images/pol-pope-2.jpg" alt="Pope Francis audience"></div>
+            <button class="ts-btn prev"><svg viewBox="0 0 24 24"><polyline points="15,18 9,12 15,6"/></svg></button>
+            <button class="ts-btn next"><svg viewBox="0 0 24 24"><polyline points="9,18 15,12 9,6"/></svg></button>
+            <div class="ts-dots"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- POSITIONS HELD -->
+  <section class="positions">
+    <div class="sec-eyebrow reveal">Positions Held</div>
+    <h2 class="sec-title reveal reveal-delay-1">Offices &amp; <em>Roles</em></h2>
+    <div class="positions-grid">
+      <div class="pos-card reveal reveal-delay-1">
+        <p class="pos-period">1992 – 1995</p>
+        <h3 class="pos-title">Journalist — ICN &amp; Nida2 Al-Watan</h3>
+        <p class="pos-body">Political journalist covering Lebanon's post-war transition across two prominent media outlets.</p>
+      </div>
+      <div class="pos-card reveal reveal-delay-2">
+        <p class="pos-period">1992 – 1995</p>
+        <h3 class="pos-title">Political Advisor — Foreign Minister of Lebanon</h3>
+        <p class="pos-body">Senior advisory role supporting Lebanon's Foreign Minister on bilateral relations and regional diplomatic strategy.</p>
+      </div>
+      <div class="pos-card reveal reveal-delay-3">
+        <p class="pos-period">1995 – 1997</p>
+        <h3 class="pos-title">Advisor — Ministry of Social Affairs &amp; Housing Fund</h3>
+        <p class="pos-body">Policy advisor for social welfare and housing access initiatives under the Ministry of Social Affairs and the Independent Housing Fund.</p>
+      </div>
+      <div class="pos-card reveal reveal-delay-1">
+        <p class="pos-period">2016 – 2025</p>
+        <h3 class="pos-title">President — Municipality of Faraya</h3>
+        <p class="pos-body">Elected head of the Municipality of Faraya; driving landmark infrastructure, civic, and community programmes across the region.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- RECOGNITION -->
+  <section class="recognition">
+    <div class="sec-eyebrow reveal">Honours &amp; Awards</div>
+    <h2 class="sec-title reveal reveal-delay-1">Recognition &amp; <em>Honours</em></h2>
+    <div class="rec-grid" style="grid-template-columns: repeat(3,1fr);">
+      <div class="rec-item reveal reveal-delay-1">
+        <div class="rec-year">2017</div>
+        <div class="rec-award">Municipal Excellence Recognition</div>
+        <div class="rec-by">Italian Institutions — in recognition of municipal contributions and community events</div>
+      </div>
+      <div class="rec-item reveal reveal-delay-2">
+        <div class="rec-year">2018</div>
+        <div class="rec-award">Patriarch Medal of Honor</div>
+        <div class="rec-by">Lebanese Maronite Patriarchate — 3rd recipient in history</div>
+      </div>
+      <div class="rec-item reveal reveal-delay-3">
+        <div class="rec-year">2019</div>
+        <div class="rec-award">Papal Blessing — Pope Francis</div>
+        <div class="rec-by">Vatican — personal audience and blessing received from His Holiness Pope Francis</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">Michel Salameh</div>
+    <div class="footer-nav">
+      <a href="index.html">Home</a>
+      <a href="business.html">Business</a>
+      <a href="social.html">Social Works</a>
+    </div>
+    <p class="footer-copy">&copy; 2026 Michel Salameh</p>
+  </footer>
+
+  <script>
+    // ─── SCROLL REVEAL ───────────────────────────────────────────────────────
+    var revealObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(function(el) { revealObserver.observe(el); });
+
+    // ─── TIMELINE SLIDESHOWS ─────────────────────────────────────────────────
+    setTimeout(function() {
+      document.querySelectorAll('.timeline-slideshow').forEach(function(sl) {
+        var dotsEl  = sl.querySelector('.ts-dots');
+        var prevBtn = sl.querySelector('.ts-btn.prev');
+        var nextBtn = sl.querySelector('.ts-btn.next');
+
+        // Prune failed images
+        sl.querySelectorAll('.ts-slide').forEach(function(slide) {
+          var img = slide.querySelector('img');
+          if (img && img.complete && img.naturalWidth === 0) slide.remove();
+        });
+
+        var slides = Array.from(sl.querySelectorAll('.ts-slide'));
+        var total  = slides.length;
+        slides.forEach(function(s, i) { s.classList.toggle('active', i === 0); });
+
+        if (total <= 1) {
+          if (prevBtn) prevBtn.style.display = 'none';
+          if (nextBtn) nextBtn.style.display = 'none';
+          if (dotsEl)  dotsEl.style.display  = 'none';
+          return;
+        }
+
+        var current = 0, timer;
+
+        slides.forEach(function(_, i) {
+          var d = document.createElement('div');
+          d.className = 'ts-dot' + (i === 0 ? ' active' : '');
+          d.addEventListener('click', function(e) { e.stopPropagation(); goTo(i, true); });
+          dotsEl.appendChild(d);
+        });
+
+        function goTo(index, manual) {
+          slides[current].classList.remove('active');
+          dotsEl.querySelectorAll('.ts-dot')[current].classList.remove('active');
+          current = (index + total) % total;
+          slides[current].classList.add('active');
+          dotsEl.querySelectorAll('.ts-dot')[current].classList.add('active');
+          if (manual) { clearInterval(timer); startAuto(); }
+        }
+        function startAuto() { timer = setInterval(function() { goTo(current + 1, false); }, 4500); }
+
+        if (prevBtn) prevBtn.addEventListener('click', function(e) { e.stopPropagation(); goTo(current - 1, true); });
+        if (nextBtn) nextBtn.addEventListener('click', function(e) { e.stopPropagation(); goTo(current + 1, true); });
+        sl.addEventListener('mouseenter', function() { clearInterval(timer); });
+        sl.addEventListener('mouseleave', startAuto);
+        startAuto();
+      });
+    }, 300);
+  </script>
+</body>
+</html>

@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Michel Salameh — Businesses &amp; Investments</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:       #0c1623;
+      --ink-mid:   #111f30;
+      --ink-card:  #0f1e2f;
+      --gold:      #b89650;
+      --gold-lt:   #d4b878;
+      --gold-dim:  rgba(184,150,80,0.15);
+      --cream:     #f7f3ec;
+      --muted:     rgba(247,243,236,0.5);
+      --border:    rgba(184,150,80,0.14);
+      --sans:      'Jost', sans-serif;
+      --serif:     'Cormorant Garamond', serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--ink);
+      color: var(--cream);
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 200;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%; height: 68px;
+      background: rgba(12,22,35,0.94);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-left { display: flex; align-items: center; gap: 1.5rem; }
+    .nav-back {
+      display: flex; align-items: center; gap: 0.6rem;
+      color: rgba(247,243,236,0.35);
+      text-decoration: none;
+      font-size: 0.68rem; letter-spacing: 2px; text-transform: uppercase;
+      transition: color 0.3s;
+    }
+    .nav-back svg { width: 16px; height: 16px; stroke: currentColor; fill: none; }
+    .nav-back:hover { color: var(--gold-lt); }
+    .nav-divider { width: 1px; height: 20px; background: var(--border); }
+    .nav-logo {
+      font-family: var(--serif);
+      font-size: 1.15rem; font-weight: 500;
+      color: var(--gold-lt); letter-spacing: 1px;
+    }
+    .nav-chapter {
+      font-size: 0.62rem; letter-spacing: 4px; text-transform: uppercase;
+      color: var(--gold); background: var(--gold-dim);
+      padding: 0.3rem 0.9rem;
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 80vh;
+      display: flex; align-items: center; justify-content: center;
+      padding: 120px 7% 80px;
+      position: relative; overflow: hidden;
+      background: linear-gradient(160deg, #0e1d30 0%, #0c1623 100%);
+      text-align: center;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 50% at 70% 40%, rgba(184,150,80,0.05), transparent);
+      pointer-events: none;
+    }
+    .hero-bg-roman {
+      position: absolute;
+      right: -3%; bottom: -10%;
+      font-family: var(--serif);
+      font-size: clamp(200px, 30vw, 400px);
+      font-weight: 700;
+      color: rgba(184,150,80,0.025);
+      line-height: 1;
+      pointer-events: none; user-select: none;
+    }
+    .hero-content { position: relative; z-index: 2; max-width: 780px; }
+    .hero-eyebrow {
+      display: flex; align-items: center; justify-content: center; gap: 1rem;
+      color: var(--gold); font-size: 0.68rem;
+      font-weight: 500; letter-spacing: 5px; text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+    .hero-eyebrow::before { content: ''; width: 32px; height: 1px; background: var(--gold); }
+    .hero-title {
+      font-family: var(--serif);
+      font-size: clamp(3rem, 7vw, 7rem);
+      font-weight: 300; line-height: 0.95;
+      color: var(--cream); margin-bottom: 0.15em;
+    }
+    .hero-title em { font-style: italic; color: var(--gold-lt); }
+    .hero-rule { width: 60px; height: 1px; background: var(--gold); margin: 2rem auto; }
+    .hero-subtitle {
+      font-family: var(--serif);
+      font-size: clamp(1rem, 1.8vw, 1.25rem);
+      font-weight: 300; font-style: italic;
+      color: var(--muted); line-height: 1.75; max-width: 540px;
+      margin: 0 auto;
+    }
+
+    /* ─── INTRO ─── */
+    .intro {
+      padding: 90px 7%;
+      display: grid; grid-template-columns: 1fr 2fr;
+      gap: 6rem; align-items: start;
+      border-bottom: 1px solid var(--border);
+    }
+    .intro-label {
+      font-size: 0.65rem; letter-spacing: 5px;
+      text-transform: uppercase; color: var(--gold);
+      padding-top: 0.4rem;
+    }
+    .intro-text p {
+      font-size: 1.05rem; line-height: 1.95;
+      color: var(--muted); margin-bottom: 1.4rem; font-weight: 300;
+    }
+    .intro-text p:first-child {
+      font-family: var(--serif);
+      font-size: 1.35rem; font-weight: 300;
+      color: rgba(247,243,236,0.82); line-height: 1.7;
+    }
+
+    /* ─── VENTURES ─── */
+    .ventures { padding: 90px 7%; }
+    .section-header { margin-bottom: 4rem; }
+    .sec-eyebrow {
+      font-size: 0.65rem; letter-spacing: 5px;
+      text-transform: uppercase; color: var(--gold);
+      margin-bottom: 0.8rem;
+      display: flex; align-items: center; gap: 0.8rem;
+    }
+    .sec-eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--gold); }
+    .sec-title {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: 300; color: var(--cream); line-height: 1.1;
+    }
+    .sec-title em { font-style: italic; color: var(--gold-lt); }
+
+    .ventures-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+
+    .venture-card {
+      background: var(--ink-card);
+      padding: 0 0 2rem;
+      border-top: 1px solid var(--border);
+      position: relative;
+      transition: background 0.4s;
+      display: flex; flex-direction: column;
+    }
+    .venture-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0;
+      width: 0; height: 2px;
+      background: var(--gold);
+      transition: width 0.4s;
+      z-index: 1;
+    }
+    .venture-card:hover { background: rgba(15,30,47,0.9); }
+    .venture-card:hover::before { width: 100%; }
+
+    /* ─── SLIDESHOW ─── */
+    .slideshow {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+      background: rgba(184,150,80,0.06);
+      border-bottom: 1px solid var(--border);
+    }
+    .slideshow-slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 0.7s ease;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .slideshow-slide.active { opacity: 1; }
+    .slideshow-slide img {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+    .slideshow-slide.placeholder {
+      font-size: 0.6rem; letter-spacing: 2px;
+      text-transform: uppercase; color: rgba(184,150,80,0.35);
+      flex-direction: column; gap: 0.6rem;
+    }
+    .slideshow-slide.placeholder svg {
+      width: 36px; height: 36px;
+      stroke: rgba(184,150,80,0.25); fill: none; stroke-width: 1;
+    }
+
+    .slideshow-btn {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      z-index: 10;
+      background: rgba(12,22,35,0.72);
+      border: 1px solid rgba(184,150,80,0.25);
+      color: var(--gold-lt);
+      width: 34px; height: 34px;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      transition: background 0.25s, border-color 0.25s, opacity 0.25s;
+      opacity: 0;
+    }
+    .slideshow:hover .slideshow-btn { opacity: 1; }
+    .slideshow-btn:hover { background: rgba(184,150,80,0.22); border-color: var(--gold); }
+    .slideshow-btn svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; }
+    .slideshow-btn.prev { left: 10px; }
+    .slideshow-btn.next { right: 10px; }
+
+    .slideshow-dots {
+      position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%);
+      display: flex; gap: 6px; z-index: 10;
+    }
+    .slideshow-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: rgba(184,150,80,0.3);
+      cursor: pointer;
+      transition: background 0.3s, transform 0.3s;
+    }
+    .slideshow-dot.active {
+      background: var(--gold);
+      transform: scale(1.25);
+    }
+
+    .venture-info {
+      padding: 1.6rem 1.8rem 0;
+      flex: 1; display: flex; flex-direction: column;
+    }
+    .venture-sector {
+      font-size: 0.62rem; letter-spacing: 3.5px;
+      text-transform: uppercase; color: var(--gold);
+      margin-bottom: 0.6rem;
+    }
+    .venture-name {
+      font-family: var(--serif);
+      font-size: 1.35rem; font-weight: 500;
+      color: var(--cream); line-height: 1.2;
+      margin-bottom: 0.7rem;
+    }
+    .venture-desc {
+      font-size: 0.83rem; line-height: 1.8;
+      color: var(--muted); font-weight: 300;
+      margin-bottom: 1.3rem; flex: 1;
+    }
+    .venture-stat {
+      display: flex; align-items: baseline; gap: 0.4rem;
+      margin-top: auto;
+    }
+    .venture-stat-num {
+      font-family: var(--serif);
+      font-size: 1.9rem; font-weight: 300;
+      color: var(--gold-lt); line-height: 1;
+    }
+    .venture-stat-label {
+      font-size: 0.65rem; letter-spacing: 2px;
+      text-transform: uppercase; color: rgba(247,243,236,0.3);
+    }
+
+    /* ─── PHILOSOPHY ─── */
+    .philosophy {
+      padding: 90px 7%;
+      background: var(--ink-mid);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .philosophy-layout {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 6rem; align-items: center;
+    }
+    .phil-photo {
+      aspect-ratio: 4/3;
+      background: rgba(184,150,80,0.05);
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.65rem; letter-spacing: 2px;
+      text-transform: uppercase; color: rgba(184,150,80,0.3);
+      position: relative;
+    }
+    .phil-photo::before {
+      content: '';
+      position: absolute; top: -12px; left: -12px; right: 12px; bottom: 12px;
+      border: 1px solid var(--border);
+      pointer-events: none;
+    }
+    .phil-quote {
+      font-family: var(--serif);
+      font-size: clamp(1.3rem, 2.5vw, 2rem);
+      font-weight: 300; font-style: italic;
+      color: var(--cream); line-height: 1.55;
+      border-left: 2px solid var(--gold);
+      padding-left: 2rem;
+      margin-bottom: 2.5rem;
+    }
+    .phil-body p {
+      font-size: 0.92rem; line-height: 1.9;
+      color: var(--muted); font-weight: 300;
+      margin-bottom: 1.2rem;
+    }
+
+    /* ─── PORTFOLIO TABLE ─── */
+    .portfolio { padding: 90px 7%; }
+    .portfolio-table {
+      width: 100%; border-collapse: collapse; margin-top: 3rem;
+    }
+    .portfolio-table thead tr { border-bottom: 1px solid var(--border); }
+    .portfolio-table th {
+      text-align: left;
+      font-size: 0.62rem; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--gold);
+      font-weight: 400; padding: 0 1rem 1.2rem 0;
+    }
+    .portfolio-table tbody tr {
+      border-bottom: 1px solid rgba(184,150,80,0.07);
+      transition: background 0.3s;
+    }
+    .portfolio-table tbody tr:hover { background: rgba(184,150,80,0.04); }
+    .portfolio-table td {
+      padding: 1.5rem 1rem 1.5rem 0;
+      font-size: 0.9rem; color: var(--muted);
+      font-weight: 300; vertical-align: top;
+    }
+    .td-company {
+      font-family: var(--serif);
+      font-size: 1.05rem; color: var(--cream); font-weight: 400;
+    }
+    .td-sector {
+      font-size: 0.65rem; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--gold); margin-top: 0.3rem;
+    }
+    .td-status {
+      display: inline-block;
+      border: 1px solid rgba(184,150,80,0.3);
+      color: var(--gold-lt);
+      padding: 0.2rem 0.7rem;
+      font-size: 0.62rem; letter-spacing: 2px; text-transform: uppercase;
+    }
+    .td-status.active { border-color: rgba(122,170,100,0.4); color: #8fc87a; }
+    .td-status.exited { border-color: rgba(184,150,80,0.25); color: rgba(212,184,120,0.6); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--ink);
+      border-top: 1px solid var(--border);
+      padding: 2.5rem 5%;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .footer-logo { font-family: var(--serif); font-size: 1.1rem; color: rgba(212,184,120,0.5); }
+    .footer-nav { display: flex; gap: 2rem; }
+    .footer-nav a {
+      font-size: 0.68rem; letter-spacing: 2px;
+      text-transform: uppercase; color: rgba(247,243,236,0.2);
+      text-decoration: none; transition: color 0.3s;
+    }
+    .footer-nav a:hover { color: var(--gold); }
+    .footer-copy { font-size: 0.7rem; color: rgba(247,243,236,0.18); }
+
+    /* ─── SCROLL REVEAL ─── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(36px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+    .reveal-delay-5 { transition-delay: 0.5s; }
+
+    @media (max-width: 1100px) {
+      .ventures-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 700px) {
+      .intro, .philosophy-layout { grid-template-columns: 1fr; gap: 3rem; }
+      .ventures-grid { grid-template-columns: 1fr; }
+      .ach-row { grid-template-columns: 1fr; gap: 0.8rem; }
+      footer { flex-direction: column; gap: 1.5rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-left">
+      <a href="index.html" class="nav-back">
+        <svg viewBox="0 0 24 24" stroke-width="1.5"><polyline points="15,18 9,12 15,6"/></svg>
+        Back
+      </a>
+      <div class="nav-divider"></div>
+      <div class="nav-logo">Michel Salameh</div>
+    </div>
+    <span class="nav-chapter">Chapter I &nbsp;·&nbsp; Business &amp; Investments</span>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg-roman">I</div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Chapter I</p>
+      <h1 class="hero-title">Businesses &amp;<br/><em>Investments</em></h1>
+      <div class="hero-rule"></div>
+      <p class="hero-subtitle">"Build enterprises that outlast you — ones that create livelihoods, not just wealth."</p>
+    </div>
+  </section>
+
+  <!-- INTRO -->
+  <div class="intro">
+    <p class="intro-label reveal">Overview</p>
+    <div class="intro-text reveal reveal-delay-1">
+      <p>Michel Salameh's entrepreneurial story is one of deliberate building — a portfolio assembled not for financial engineering, but for economic creation. Each venture has been chosen for its capacity to generate genuine value: jobs, infrastructure, and institutions that serve the communities in which they operate.</p>
+      <p>Spanning real estate development, professional services, and technology ventures, his business interests reflect the same clarity of purpose that has defined his legal and political careers. The enterprises he has built employ thousands directly and tens of thousands more in their supply chains.</p>
+    </div>
+  </div>
+
+  <!-- VENTURES -->
+  <section class="ventures">
+    <div class="section-header reveal">
+      <div class="sec-eyebrow">Portfolio</div>
+      <h2 class="sec-title">Key <em>Ventures</em></h2>
+    </div>
+    <div class="ventures-grid">
+
+      <!-- Card 1: Middle East Security -->
+      <div class="venture-card reveal reveal-delay-1">
+        <div class="slideshow">
+          <div class="slideshow-slide active"><img src="../images/mes-1.jpg" alt="MES"></div>
+          <div class="slideshow-slide"><img src="../images/mes-2.jpg" alt="MES"></div>
+          <div class="slideshow-slide"><img src="../images/mes-3.jpg" alt="MES"></div>
+          <button class="slideshow-btn prev" aria-label="Previous"><svg viewBox="0 0 24 24"><polyline points="15,18 9,12 15,6"/></svg></button>
+          <button class="slideshow-btn next" aria-label="Next"><svg viewBox="0 0 24 24"><polyline points="9,18 15,12 9,6"/></svg></button>
+          <div class="slideshow-dots"></div>
+        </div>
+        <div class="venture-info">
+          <p class="venture-sector">Company</p>
+          <h3 class="venture-name">Middle East Security</h3>
+          <p class="venture-desc">Michel is the owner of Middle East Security (MES), a leading security services firm founded in Lebanon and now operating across the region with offices in Dubai, United Arab Emirates. Recognized as the leading security company in Lebanon and ranked among the top 10 in the MENA region, MES delivers a comprehensive range of services including the secure transportation of cash and bonds on behalf of leading financial and banking institutions.</p>
+          <div class="venture-stat">
+            <span class="venture-stat-num">2k</span>
+            <span class="venture-stat-label">Employees</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2: Law Firm -->
+      <div class="venture-card reveal reveal-delay-2">
+        <div class="slideshow">
+          <div class="slideshow-slide active"><img src="../images/law-11.jpg" alt="Law Firm"></div>
+          <div class="slideshow-slide"><img src="../images/law-2.jpg" alt="Law Firm"></div>
+          <button class="slideshow-btn prev" aria-label="Previous"><svg viewBox="0 0 24 24"><polyline points="15,18 9,12 15,6"/></svg></button>
+          <button class="slideshow-btn next" aria-label="Next"><svg viewBox="0 0 24 24"><polyline points="9,18 15,12 9,6"/></svg></button>
+          <div class="slideshow-dots"></div>
+        </div>
+        <div class="venture-info">
+          <p class="venture-sector">Professional Services</p>
+          <h3 class="venture-name">Salameh &amp; Partners Law</h3>
+          <p class="venture-desc">One of the region's most respected law practices, specialising in constitutional litigation, commercial law, and arbitration. Founded on Michel's own legal legacy.</p>
+          <div class="venture-stat">
+            <!-- <span class="venture-stat-num">350+</span>
+            <span class="venture-stat-label">Cases Won</span> -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3: Real Estate -->
+      <div class="venture-card reveal reveal-delay-3">
+        <div class="slideshow">
+          <div class="slideshow-slide active"><img src="../images/realestate-1.jpg" alt="Real Estate"></div>
+          <div class="slideshow-slide"><img src="../images/realestate-2.jpg" alt="Real Estate"></div>
+          <div class="slideshow-slide"><img src="../images/realestate-3.jpg" alt="Real Estate"></div>
+          <button class="slideshow-btn prev" aria-label="Previous"><svg viewBox="0 0 24 24"><polyline points="15,18 9,12 15,6"/></svg></button>
+          <button class="slideshow-btn next" aria-label="Next"><svg viewBox="0 0 24 24"><polyline points="9,18 15,12 9,6"/></svg></button>
+          <div class="slideshow-dots"></div>
+        </div>
+        <div class="venture-info">
+          <p class="venture-sector">Properties</p>
+          <h3 class="venture-name">Real Estate Investments</h3>
+          <p class="venture-desc">Michel holds real estate across Canada, France, Greece, Côte d'Ivoire, and Lebanon — a diversified portfolio spanning four continents, balancing established markets with high-growth regions.</p>
+          <div class="venture-stat">
+            <!-- <span class="venture-stat-num">18</span>
+            <span class="venture-stat-label">Portfolio Properties</span> -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4: Hotels -->
+      <div class="venture-card reveal reveal-delay-4">
+        <div class="slideshow">
+          <div class="slideshow-slide active"><img src="../images/hotels-1.jpg" alt="Hotels"></div>
+          <div class="slideshow-slide"><img src="../images/hotels-2.jpg" alt="Hotels"></div>
+          <div class="slideshow-slide"><img src="../images/hotels-3.jpg" alt="Hotels"></div>
+          <button class="slideshow-btn prev" aria-label="Previous"><svg viewBox="0 0 24 24"><polyline points="15,18 9,12 15,6"/></svg></button>
+          <button class="slideshow-btn next" aria-label="Next"><svg viewBox="0 0 24 24"><polyline points="9,18 15,12 9,6"/></svg></button>
+          <div class="slideshow-dots"></div>
+        </div>
+        <div class="venture-info">
+          <p class="venture-sector">Hospitality</p>
+          <h3 class="venture-name">Hotels</h3>
+          <p class="venture-desc">Michel's portfolio extends into Beirut's hospitality sector with two luxury hotels currently under construction in the heart of the city. The first is scheduled to open in September 2026, with the second following in December 2026 — a significant investment in the revitalization of Beirut as a premier destination.</p>
+          <div class="venture-stat">
+            <!-- <span class="venture-stat-num">800+</span>
+            <span class="venture-stat-label">Staff Employed</span> -->
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /.ventures-grid -->
+  </section>
+
+  <!-- PHILOSOPHY -->
+  <section class="philosophy">
+    <div class="philosophy-layout">
+      <div class="phil-photo reveal" style="padding:0; overflow:hidden;">
+        <img src="../images/phil-photo.jpg" alt="Michel Salameh" style="width:100%; height:100%; object-fit:cover; object-position:center; display:block;">
+      </div>
+      <div class="phil-content reveal reveal-delay-2"> 
+        <div class="sec-eyebrow">Philosophy</div>
+        <blockquote class="phil-quote">"The measure of an enterprise is not its profit margin — it is the number of families it sustains, and the communities it strengthens."</blockquote>
+        <div class="phil-body">
+          <p>Michel's approach to business has always been shaped by his legal and political formation: an instinct for long-term structures, a respect for institutions, and a deep belief that private enterprise and public good are not in conflict — they are complementary.</p>
+          <p>He insists that every company he backs or builds must clear a second test alongside profitability: does it create lasting value for the people it employs and the communities it serves?</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO TABLE -->
+  <section class="portfolio">
+    <div class="sec-eyebrow reveal">Full Record</div>
+    <h2 class="sec-title reveal reveal-delay-1">Investment <em>Portfolio</em></h2>
+    <table class="portfolio-table reveal reveal-delay-2">
+      <thead>
+        <tr>
+          <th>Company</th>
+          <th>Year Founded</th>
+          <th>Sector</th>
+          <th>Role</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><div class="td-company">Middle East Security (MES)</div><div class="td-sector">Security</div></td>
+          <td>2000</td>
+          <td>Security Services</td>
+          <td>Owner</td>
+          <td><span class="td-status active">Active</span></td>
+        </tr>
+        <tr>
+          <td><div class="td-company">Salameh &amp; Partners Law</div><div class="td-sector">Legal</div></td>
+          <td>1993</td>
+          <td>Professional Services</td>
+          <td>Founding Partner</td>
+          <td><span class="td-status active">Active</span></td>
+        </tr>
+        <tr>
+          <td><div class="td-company">Real Estate Portfolio</div><div class="td-sector">Properties</div></td>
+          <td>2008</td>
+          <td>Real Estate</td>
+          <td>Owner &amp; Investor</td>
+          <td><span class="td-status active">Active</span></td>
+        </tr>
+        <tr>
+          <td><div class="td-company">Beirut Luxury Hotels</div><div class="td-sector">Hospitality</div></td>
+          <td>2025</td>
+          <td>Hospitality</td>
+          <td>Owner &amp; Developer</td>
+          <td><span class="td-status">In Development</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">Michel Salameh</div>
+    <div class="footer-nav">
+      <a href="index.html">Home</a>
+      <a href="politics.html">Political Journey</a>
+      <a href="social.html">Social Works</a>
+    </div>
+    <p class="footer-copy">&copy; 2026 Michel Salameh</p>
+  </footer>
+
+  <script>
+    // ─── SLIDESHOW ENGINE ───────────────────────────────────────────────────────
+    document.querySelectorAll('.slideshow').forEach(function(sl) {
+      var dotsContainer = sl.querySelector('.slideshow-dots');
+      var prevBtn = sl.querySelector('.slideshow-btn.prev');
+      var nextBtn = sl.querySelector('.slideshow-btn.next');
+
+      // Wait briefly for images to report load errors, then prune broken slides
+      setTimeout(function() {
+        var slides = Array.from(sl.querySelectorAll('.slideshow-slide'));
+
+        // Remove slides whose image failed to load (naturalWidth === 0 and complete)
+        slides.forEach(function(slide) {
+          var img = slide.querySelector('img');
+          if (img && img.complete && img.naturalWidth === 0) {
+            slide.remove();
+          }
+        });
+
+        // Re-query after pruning
+        slides = Array.from(sl.querySelectorAll('.slideshow-slide'));
+        var total = slides.length;
+
+        // Ensure exactly one slide is active
+        slides.forEach(function(s, i) { s.classList.toggle('active', i === 0); });
+
+        // If only one slide, hide controls
+        if (total <= 1) {
+          if (prevBtn) prevBtn.style.display = 'none';
+          if (nextBtn) nextBtn.style.display = 'none';
+          dotsContainer.style.display = 'none';
+          return;
+        }
+
+        var current = 0;
+        var timer;
+
+        // Build dots
+        slides.forEach(function(_, i) {
+          var dot = document.createElement('div');
+          dot.className = 'slideshow-dot' + (i === 0 ? ' active' : '');
+          dot.addEventListener('click', function() { goTo(i, true); });
+          dotsContainer.appendChild(dot);
+        });
+
+        function goTo(index, manual) {
+          slides[current].classList.remove('active');
+          dotsContainer.querySelectorAll('.slideshow-dot')[current].classList.remove('active');
+          current = (index + total) % total;
+          slides[current].classList.add('active');
+          dotsContainer.querySelectorAll('.slideshow-dot')[current].classList.add('active');
+          if (manual) { clearInterval(timer); startAuto(); }
+        }
+
+        function startAuto() {
+          timer = setInterval(function() { goTo(current + 1, false); }, 4500);
+        }
+
+        if (prevBtn) prevBtn.addEventListener('click', function() { goTo(current - 1, true); });
+        if (nextBtn) nextBtn.addEventListener('click', function() { goTo(current + 1, true); });
+
+        sl.addEventListener('mouseenter', function() { clearInterval(timer); });
+        sl.addEventListener('mouseleave', startAuto);
+
+        startAuto();
+      }, 300);
+    });
+
+    // ─── SCROLL REVEAL ───────────────────────────────────────────────────────
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach(function(el) {
+      observer.observe(el);
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Michel Salameh</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:       #0c1623;      /* deep midnight navy */
+      --ink-mid:   #162236;      /* slightly lighter panel bg */
+      --gold:      #b89650;      /* muted bronze-gold */
+      --gold-lt:   #d4b878;      /* light champagne gold */
+      --gold-dim:  rgba(184,150,80,0.18);
+      --cream:     #f7f3ec;      /* warm ivory */
+      --cream-mid: #ede8df;
+      --text-lt:   rgba(247,243,236,0.72);
+      --sans:      'Jost', sans-serif;
+      --serif:     'Cormorant Garamond', serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--ink);
+      color: var(--cream);
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 200;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%;
+      height: 68px;
+      background: rgba(12, 22, 35, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(184,150,80,0.2);
+    }
+    .nav-logo {
+      font-family: var(--serif);
+      font-size: 1.25rem;
+      font-weight: 500;
+      color: var(--gold-lt);
+      letter-spacing: 1.5px;
+    }
+    .nav-links {
+      display: flex; gap: 2.5rem; list-style: none;
+    }
+    .nav-links a {
+      color: rgba(247,243,236,0.55);
+      text-decoration: none;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--gold-lt); }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 100px 6% 60px;
+      position: relative;
+      background: var(--ink);
+      overflow: hidden;
+    }
+
+    /* geometric accent lines */
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 40%, rgba(184,150,80,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-ornament {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: min(700px, 90vw);
+      height: min(700px, 90vw);
+      border: 1px solid rgba(184,150,80,0.07);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .hero-ornament::before {
+      content: '';
+      position: absolute;
+      inset: 40px;
+      border: 1px solid rgba(184,150,80,0.05);
+      border-radius: 50%;
+    }
+
+    .hero-content { position: relative; z-index: 2; max-width: 860px; }
+
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 1.2rem;
+      color: var(--gold);
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+    }
+    .hero-eyebrow span {
+      display: inline-block;
+      width: 40px; height: 1px;
+      background: var(--gold);
+    }
+
+    .hero-name {
+      font-family: var(--serif);
+      font-size: clamp(4rem, 10vw, 9rem);
+      font-weight: 300;
+      line-height: 0.95;
+      color: var(--cream);
+      letter-spacing: -1px;
+      margin-bottom: 0.2em;
+    }
+    .hero-name em {
+      font-style: italic;
+      color: var(--gold-lt);
+      font-weight: 300;
+    }
+
+    .hero-rule {
+      width: 80px; height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+      margin: 2rem auto;
+    }
+
+    .hero-tagline {
+      font-family: var(--serif);
+      font-size: clamp(1rem, 2vw, 1.3rem);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--text-lt);
+      line-height: 1.7;
+      max-width: 600px;
+      margin: 0 auto 1.5rem;
+    }
+
+    .hero-roles {
+      display: flex;
+      justify-content: center;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+      margin-bottom: 3.5rem;
+    }
+    .role-pill {
+      border: 1px solid rgba(184,150,80,0.4);
+      color: var(--gold-lt);
+      padding: 0.35rem 1.1rem;
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+    }
+
+    .hero-scroll {
+      display: flex; flex-direction: column; align-items: center; gap: 0.6rem;
+      color: rgba(247,243,236,0.3);
+      font-size: 0.62rem; letter-spacing: 3px; text-transform: uppercase;
+    }
+    .scroll-line {
+      width: 1px; height: 48px;
+      background: linear-gradient(to bottom, var(--gold), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.4; transform: scaleY(1); }
+      50%       { opacity: 1;   transform: scaleY(1.15); }
+    }
+
+    /* ─── PORTALS SECTION ─── */
+    .portals-section {
+      padding: 0 5% 100px;
+      background: var(--ink);
+    }
+
+    .portals-header {
+      text-align: center;
+      padding: 70px 0 60px;
+    }
+    .portals-header-eyebrow {
+      font-size: 0.68rem; letter-spacing: 5px; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1rem;
+    }
+    .portals-header-title {
+      font-family: var(--serif);
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 300; color: var(--cream);
+      line-height: 1.2;
+    }
+
+    .portals-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+
+    /* Each portal panel */
+    .portal {
+      position: relative;
+      min-height: 560px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 3rem 3rem 3.5rem;
+      overflow: hidden;
+      text-decoration: none;
+      cursor: pointer;
+      background: var(--ink-mid);
+      transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .portal:hover { transform: translateY(-6px); }
+    .portal:hover .portal-overlay { opacity: 0.55; }
+    .portal:hover .portal-cta { opacity: 1; transform: translateY(0); }
+    .portal:hover .portal-number { opacity: 0.06; }
+    .portal:hover .portal-icon-line { width: 60px; }
+
+    /* Unique bg tint per portal */
+    .portal-business  { background: linear-gradient(160deg, #0e1d30 0%, #0c1623 100%); }
+    .portal-politics  { background: linear-gradient(160deg, #111827 0%, #0c1320 100%); }
+    .portal-social    { background: linear-gradient(160deg, #0f1e18 0%, #0c1623 100%); }
+
+    /* corner accent border */
+    .portal::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 3px;
+      background: linear-gradient(to right, var(--gold), transparent);
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+    .portal:hover::after { opacity: 1; }
+
+    /* big background number */
+    .portal-number {
+      position: absolute;
+      bottom: -20px; right: -10px;
+      font-family: var(--serif);
+      font-size: 260px;
+      font-weight: 700;
+      line-height: 1;
+      color: rgba(247,243,236,0.025);
+      pointer-events: none;
+      opacity: 0.025;
+      transition: opacity 0.4s;
+      user-select: none;
+    }
+
+    /* subtle gradient overlay at bottom */
+    .portal-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(12,22,35,0.85) 0%, transparent 60%);
+      opacity: 0.7;
+      transition: opacity 0.4s;
+    }
+
+    .portal-content { position: relative; z-index: 2; }
+
+    .portal-icon-line {
+      width: 32px; height: 1px;
+      background: var(--gold);
+      margin-bottom: 1.8rem;
+      transition: width 0.4s;
+    }
+
+    .portal-category {
+      font-size: 0.62rem;
+      font-weight: 500;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+
+    .portal-title {
+      font-family: var(--serif);
+      font-size: clamp(1.6rem, 2.5vw, 2.4rem);
+      font-weight: 400;
+      color: var(--cream);
+      line-height: 1.15;
+      margin-bottom: 1.2rem;
+    }
+    .portal-title em {
+      font-style: italic;
+      font-weight: 300;
+      color: var(--gold-lt);
+    }
+
+    .portal-desc {
+      font-size: 0.87rem;
+      font-weight: 300;
+      color: rgba(247,243,236,0.5);
+      line-height: 1.8;
+      margin-bottom: 2rem;
+      max-width: 320px;
+    }
+
+    .portal-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      color: var(--gold-lt);
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.4s, transform 0.4s;
+    }
+    .portal-cta svg {
+      width: 20px; height: 20px;
+      stroke: var(--gold-lt);
+      fill: none;
+    }
+
+    /* photo inside portal */
+    .portal-photo {
+      position: absolute;
+      top: 2rem; right: 2rem;
+      width: 120px; height: 150px;
+      border: 1px solid rgba(184,150,80,0.15);
+      overflow: hidden;
+      z-index: 1;
+    }
+    .portal-photo img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center;
+      display: block;
+    }
+
+    /* ─── BOTTOM STRIP ─── */
+    .bottom-strip {
+      background: var(--ink-mid);
+      border-top: 1px solid rgba(184,150,80,0.12);
+      border-bottom: 1px solid rgba(184,150,80,0.12);
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      text-align: center;
+    }
+    .strip-item {
+      padding: 3rem 1.5rem;
+      border-right: 1px solid rgba(184,150,80,0.1);
+    }
+    .strip-item:last-child { border-right: none; }
+    .strip-num {
+      font-family: var(--serif);
+      font-size: 3.2rem;
+      font-weight: 300;
+      color: var(--gold-lt);
+      line-height: 1;
+    }
+    .strip-label {
+      font-size: 0.65rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(247,243,236,0.35);
+      margin-top: 0.5rem;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--ink);
+      border-top: 1px solid rgba(184,150,80,0.1);
+      padding: 2.5rem 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .footer-logo {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      color: rgba(212,184,120,0.6);
+    }
+    .footer-copy {
+      font-size: 0.72rem;
+      color: rgba(247,243,236,0.2);
+      letter-spacing: 1px;
+    }
+    .footer-links { display: flex; gap: 2rem; }
+    .footer-links a {
+      font-size: 0.68rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(247,243,236,0.25);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .footer-links a:hover { color: var(--gold); }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      .portals-grid { grid-template-columns: 1fr; }
+      .portal { min-height: 400px; }
+      .portal-number { font-size: 160px; }
+      .bottom-strip { grid-template-columns: repeat(2, 1fr); }
+      .nav-links { display: none; }
+      footer { flex-direction: column; gap: 1.5rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">Michel Salameh</div>
+    <ul class="nav-links">
+      <li><a href="business.html">Business</a></li>
+      <li><a href="politics.html">Politics</a></li>
+      <li><a href="social.html">Social</a></li>
+      <li><a href="mailto:office@michelsalameh.com">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-ornament"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow"><span></span> Official Portfolio <span></span></p>
+      <h1 class="hero-name">Michel<br/><em>Salameh</em></h1>
+      <div class="hero-rule"></div>
+      <p class="hero-tagline">"A life defined not by titles held, but by causes served and futures built."</p>
+      <div class="hero-roles">
+        <span class="role-pill">Lawyer</span>
+        <span class="role-pill">Politician</span>
+        <span class="role-pill">Entrepreneur</span>
+      </div>
+      <div class="hero-scroll">
+        <div class="scroll-line"></div>
+        <span>Explore</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- PORTALS -->
+  <div class="portals-section">
+    <div class="portals-header">
+      <p class="portals-header-eyebrow">Three Pillars of a Life in Service</p>
+      <h2 class="portals-header-title">Choose a chapter to explore</h2>
+    </div>
+
+    <div class="portals-grid">
+
+      <!-- 1 — Business -->
+      <a href="business.html" class="portal portal-business">
+        <div class="portal-number">I</div>
+        <div class="portal-overlay"></div>
+        <div class="portal-photo"><img src="../images/bus-main.jpg" alt="Business"></div>
+        <div class="portal-content">
+          <div class="portal-icon-line"></div>
+          <p class="portal-category">Chapter I</p>
+          <h2 class="portal-title">Businesses &amp;<br/><em>Investments</em></h2>
+          <p class="portal-desc">From founding enterprises that reshaped whole industries to seeding ventures that created thousands of livelihoods — a record built on vision and resolve.</p>
+          <span class="portal-cta">
+            Enter
+            <svg viewBox="0 0 24 24" stroke-width="1.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12,5 19,12 12,19"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- 2 — Politics -->
+      <a href="politics.html" class="portal portal-politics">
+        <div class="portal-number">II</div>
+        <div class="portal-overlay"></div>
+        <div class="portal-photo"><img src="../images/pol-main.jpg" alt="Politics"></div>
+        <div class="portal-content">
+          <div class="portal-icon-line"></div>
+          <p class="portal-category">Chapter II</p>
+          <h2 class="portal-title">Political<br/><em>Journey</em></h2>
+          <p class="portal-desc">Three decades navigating the corridors of power — championing reform, defending justice, and forging the policies that shaped a generation.</p>
+          <span class="portal-cta">
+            Enter
+            <svg viewBox="0 0 24 24" stroke-width="1.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12,5 19,12 12,19"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- 3 — Social -->
+      <a href="social.html" class="portal portal-social">
+        <div class="portal-number">III</div>
+        <div class="portal-overlay"></div>
+        <div class="portal-photo"><img src="../images/socialwork.jpg" alt="Social Works"></div>
+        <div class="portal-content">
+          <div class="portal-icon-line"></div>
+          <p class="portal-category">Chapter III</p>
+          <h2 class="portal-title">Social<br/><em>Works</em></h2>
+          <p class="portal-desc">Behind the public figure is a philanthropist — funding education, uplifting communities, and building institutions that outlast any office held.</p>
+          <span class="portal-cta">
+            Enter
+            <svg viewBox="0 0 24 24" stroke-width="1.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12,5 19,12 12,19"/></svg>
+          </span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- STATS STRIP -->
+  <div class="bottom-strip">
+    <div class="strip-item">
+      <div class="strip-num">30+</div>
+      <div class="strip-label">Years of Service</div>
+    </div>
+    <div class="strip-item">
+      <div class="strip-num">3.5K+</div>
+      <div class="strip-label">Jobs Created</div>
+    </div>
+    <div class="strip-item">
+      <div class="strip-num">5+</div>
+      <div class="strip-label">Countries with Business</div>
+    </div>
+    <div class="strip-item">
+      <div class="strip-num">50+</div>
+      <div class="strip-label">Public Events</div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">Michel Salameh</div>
+    <p class="footer-copy">&copy; 2026 Michel Salameh. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="business.html">Business</a>
+      <a href="politics.html">Politics</a>
+      <a href="social.html">Social</a>
+    </div>
+  </footer>
+
+</body>
+</html>
